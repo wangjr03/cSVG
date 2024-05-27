@@ -29,32 +29,27 @@ Note: Step 2 uses step 1 output as input. If you prefer to use other methods to 
 
 combining results from the output of step 2:
 ```{r}
-
 data=matrix(0,nrow=1,ncol=12)
 colnames(data)=c("X","GSP1","COS1","GSP2","COS2","GSP3","COS3","GSP4","COS4","GSP5","COS5","combined")
-for(i in 1:10){
-    r=read.csv(paste0("/mnt/research/compbio/wanglab/sikta/TWAS/thesis/Spatial/Spatial_Analysis/dataset_LIBD/Github/out_step2_sample_",sample_i,"_",i,".csv"))
+for(i in 1:N_ARRAY){
+    r=read.csv(paste0("dataset/Results/out_step2_sample_",sample_i,"_",i,".csv"))
     data=rbind(data,r)
 }
 data=data[-1,]
 
-write.csv(data,paste0("/mnt/research/compbio/wanglab/sikta/TWAS/thesis/Spatial/Spatial_Analysis/DEC-SVG_new/code/Github/sample_new_",sample_i,"_result_step2.csv"))
-p_adj2=p.adjust(data[,12], method = "BY")
-a2=which(p_adj2<0.05) #1247
-DEC_genes=data[which(p_adj2<0.05),1] #1247
+write.csv(data,paste0("dataset/Results/sample_",sample_i,"_result_step2.csv"))
+
 
 data=matrix(0,nrow=1,ncol=2)
 colnames(data)=c("X","V1")
-for(i in 1:10){
-    #r=read.csv(paste0("/mnt/research/compbio/wanglab/sikta/TWAS/thesis/Spatial/Spatial_Analysis/dataset_panCancer/output_panCancer/out_SIS+Enet_",i,".csv"))
-    r=read.csv(paste0("/mnt/research/compbio/wanglab/sikta/TWAS/thesis/Spatial/Spatial_Analysis/dataset_LIBD/Github/list_step2_sample_",sample_i,"_",i,".csv"))
+for(i in 1:N_ARRAY){
+    r=read.csv(paste0("dataset/Results/list_step2_sample_",sample_i,"_",i,".csv"))
     data=rbind(data,r)
 }
 list1=data[-1,]
 
-#list1[,1] should be 1:4144, but it is not because of how the data was collected.
-list1[,1]=1:dim(list1)[1] #corrected now
-write.csv(list1,paste0("/mnt/research/compbio/wanglab/sikta/TWAS/thesis/Spatial/Spatial_Analysis/DEC-SVG_new/code/Github/sample_new_",sample_i,"_result_step2_list1.csv"))
+list1[,1]=1:dim(list1)[1] #adjustments for computing chunk wise
+write.csv(list1,paste0("dataset/Results/sample_",sample_i,"_result_step2_list1.csv"))
 ```
-
+Now these outputs can be used in subsequent steps provided in DLPFC_data_analysis.md
 
