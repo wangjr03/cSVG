@@ -1,0 +1,19 @@
+#!/usr/bin/bash --login
+#SBATCH --job-name=simulations
+#SBATCH --time=03:59:00
+#SBATCH --cpus-per-task=1
+#SBATCH --mem-per-cpu=0  
+#SBATCH --array=1-10 
+#SBATCH --output=log/%A_%a.out
+
+#Current job number, n
+n=$SLURM_ARRAY_TASK_ID
+
+cd LOCATION_THIS_FILE
+
+module purge
+module load GCC/11.2.0  OpenMPI/4.1.1
+module load R/4.3.1
+
+# run command
+R CMD BATCH --no-save --no-restore '--args jobID='$n Step1_sample6_cSVG.R  ./Out/iteration_$n
