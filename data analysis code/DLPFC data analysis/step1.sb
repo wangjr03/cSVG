@@ -16,4 +16,4 @@ module load GCC/11.2.0  OpenMPI/4.1.1
 module load R/4.3.1
 
 # run command
-R CMD BATCH --no-save --no-restore '--args jobID='$n Step1_sample6_cSVG.R  ./Out/iteration_$n
+R CMD BATCH --no-save --no-restore '--args jobID='$n code_step1.R  ./Out/iteration_$n
