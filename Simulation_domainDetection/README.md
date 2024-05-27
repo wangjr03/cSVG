@@ -1,0 +1,1 @@
+Refer to Simulation_domainDetection.md for detailed, step-by-step code and the corresponding results. The datasets utilized or generated can be found in the Synthetic_datasets and Simulation_domainDetection_Results folders.
