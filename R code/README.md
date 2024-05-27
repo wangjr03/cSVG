@@ -1,5 +1,5 @@
 
-fn_main is the main function. 
+fn_main_par is the main function. 
 
 To do step 1: use control=FALSE 
 
