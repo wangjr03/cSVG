@@ -5,6 +5,7 @@ Based on how small the gene chunks(10 genes in the example code) are and the tot
 
 combining results from the chunk output:
 
+```{r}
 sample_i=6
 data=matrix(0,nrow=1,ncol=12)
 colnames(data)=c("X","GSP1","COS1","GSP2","COS2","GSP3","COS3","GSP4","COS4","GSP5","COS5","combined")
@@ -15,6 +16,7 @@ for(iter in 1:N_ARRAY){
 
 data=data[-1,]
 write.csv(data,paste0("dataset/Results/Sample_",sample_i,"_result_step1.csv")) 
+```
 
 Step 2:
 
