@@ -1,3 +1,5 @@
+Refer to DLPFC_data_analysis.md for step-by-step analysis code based on the step 1 and step 2 results from the cSVG algorithm. 
+
 For larger datasets, the first two steps of cSVG are typically performed using a high-performance computing cluster by breaking the data into smaller gene chunks. This makes the code runs faster and smoother. Here is the description of the process: 
 
 Step 1: run code code_Step1.R using the .sb file step1.sb.
