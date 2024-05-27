@@ -17,7 +17,11 @@ for(iter in 1:N_ARRAY){
 }
 
 data=data[-1,]
-write.csv(data,paste0("dataset/Results/Sample_",sample_i,"_result_step1.csv")) 
+write.csv(data,paste0("dataset/Results/Sample_",sample_i,"_result_step1.csv"))
+
+p_adj3=p.adjust(data[,12], method = "BY")
+a3=which(p_adj3<0.05)
+length(a3)
 ```
 
 Step 2:
