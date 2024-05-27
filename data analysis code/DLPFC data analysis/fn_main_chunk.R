@@ -1,4 +1,3 @@
-#for each chunck of genes, st: start index, en: end index.
 
 fn_cSVG<-function(data_mat,loc_mat,method_step1="MargcorTest",thres_step1="standard",control=FALSE,st=1,en=10){
 
@@ -654,34 +653,21 @@ for(g in genes[st:en]){
     pc1 <- prcomp(data_mat1,
              center = FALSE,
              scale. = FALSE)
-    print(summary(pc1))
+    #print(summary(pc1))
     
     prop_var=pc1$sdev^2 / sum(pc1$sdev^2)
     tot_var=cumsum(prop_var)
-    #n=max(2,which(tot_var>0.8)[1])   #changed here
-    n=min(2,which(tot_var>0.8)[1])  #changed again
+    n=min(2,which(tot_var>0.8)[1]) 
     pc_data1=pc1$rotation[,1:n]
     X=as.matrix(pc_data1)
-    if(spp==TRUE){
-    if(n>1){
-    X=apply(pc_data1,2,fn_res)  #remember that m<3 case is not included here.
-    #X=t(X)
-    }else{
-    X=fn_res(pc_data1)
-    }
-    }
+  
     obj1<-SKAT_Null_Model(y~X, out_type = 'C')
     }else if(length(ind1)>1 & length(ind1)<=3){
       data_mat1=t(dep[ind1,]) 
       X=as.matrix(data_mat1)
       obj1<-SKAT_Null_Model(y~X, out_type = 'C')
     }else if(length(ind1)==1){
-      #X=as.matrix(dep[ind1,],nrow=length(y)) 
-      if(spp==TRUE){
-        X=as.matrix(fn_res(dep[ind1,]),nrow=length(y))  
-      }else{
-        X=as.matrix(dep[ind1,],nrow=length(y)) 
-      }
+      X=as.matrix(dep[ind1,],nrow=length(y)) 
       obj1<-SKAT_Null_Model(y~X, out_type = 'C')
     }else{
       obj1<-SKAT_Null_Model(y~1, out_type = 'C')
