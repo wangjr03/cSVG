@@ -696,7 +696,7 @@ for(g in genes[st:en]){
       print(ind)
       dim(res)
 }
-
+l_g=l_g[st:en]
 p_val_mat=res[-1,]
 rownames(p_val_mat)=genes[st:en]
 
