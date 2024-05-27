@@ -580,6 +580,7 @@ res=matrix(0,nrow=1,ncol=10)
 Z=as.matrix(coord_df)
 ED <- as.matrix(dist(coord_df))
 lrang <- ComputeGaussianPL(ED, compute_distance=FALSE)[3:7]
+l_g=list()
 for(g in genes[st:en]){
     ind=which(rownames(exp_f)==g)
     y=exp_f[ind,]
@@ -617,6 +618,7 @@ for(g in genes[st:en]){
       res1=apply(dep,1,fn_corTest)
       res1=p.adjust(res1, method = "BY")
       ind1=which(res1<0.01)
+      l_g[[ind]]= which(genes %in% names(ind1))
       if(length(ind1)>3){
         data_mat1=dep[ind1,] 
       }else{
